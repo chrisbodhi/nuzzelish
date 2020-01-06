@@ -20,7 +20,7 @@ defmodule Nuzzelish.MixProject do
   def application do
     [
       mod: {Nuzzelish.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :extwitter, :runtime_tools]
     ]
   end
 
@@ -42,7 +42,9 @@ defmodule Nuzzelish.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:oauther, "~> 1.1"},
+      {:extwitter, "~> 0.10"}
     ]
   end
 

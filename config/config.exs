@@ -25,6 +25,14 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Config Extwitter
+config :extwitter, :oauth, [
+   consumer_key: System.get_env("TW_CONSUMER_KEY"),
+   consumer_secret: System.get_env("TW_CONSUMER_SECRET"),
+   access_token: System.get_env("TW_ACCESS_TOKEN"),
+   access_token_secret: System.get_env("TW_ACCESS_TOKEN_SECRET")
+]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
