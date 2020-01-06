@@ -2,6 +2,7 @@ defmodule NuzzelishWeb.PageController do
   use NuzzelishWeb, :controller
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    urls = Twitter.get_urls()
+    render(Map.put(conn, :urls, urls), "index.html")
   end
 end

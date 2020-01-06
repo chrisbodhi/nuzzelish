@@ -3,9 +3,11 @@
   <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
 </section>
 
-<section class="row">1</section>
-<section class="row">2</section>
-<section class="row">3</section>
+<section class="row">
+  <%= for ds <- Map.get(@conn, :urls) do %>
+    <article class="column">name: <%= ds.name %> | url: <%= ds.urls %></article>
+  <% end %>
+</section>
 
 <section class="row">
   <article class="column">
