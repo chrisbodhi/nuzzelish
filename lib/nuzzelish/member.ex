@@ -5,6 +5,7 @@ defmodule Nuzzelish.Member do
   schema "members" do
     field :avatar_url, :string
     field :screen_name, :string
+    field :tw_user_id, :string
     many_to_many :links, Nuzzelish.Link, join_through: "links_members"
 
     timestamps()
