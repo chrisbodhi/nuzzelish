@@ -6,6 +6,12 @@ To start your Phoenix server:
   * Create and migrate your database with `mix ecto.setup`
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
+  * Start IEX with the app contents ready with `iex -S mix phx.server`
+  * Set env vars for `TW_ACCOUNT` and `TW_LIST`, as well as Twitter app creds:
+    - `TW_CONSUMER_KEY`
+    - `TW_CONSUMER_SECRET`
+    - `TW_ACCESS_TOKEN`
+    - `TW_ACCESS_TOKEN_SECRET`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
