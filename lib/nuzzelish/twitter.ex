@@ -1,12 +1,12 @@
 defmodule Nuzzelish.Twitter do
-  alias Nuzzelish.{Link, Member}
+  alias Nuzzelish.Member
 
   @account System.get_env("TW_ACCOUNT", "chrisbodhi")
   @list System.get_env("TW_LIST", "post-normal")
 
   def get_urls do
     get_tweets()
-    |> Enum.map(fn(tw) -> %{name: tw.user.screen_name, urls: sift_out_url(tw), status_id: tw.id_str} end)
+    |> Enum.map(fn(tw) -> %{member: member_from_tweet(tw), links: sift_out_url(tw)}, status_id: tw.id_str}  end)
     |> remove_empty()
   end
 
@@ -61,8 +61,9 @@ defmodule Nuzzelish.Twitter do
 
   def stream_from_list(ids_to_follow) do
     stream = ExTwitter.stream_filter([follow: ids_to_follow], :infinity)
-      |> Stream.map(fn(tw) -> %{name: tw.user.screen_name, urls: sift_out_url(tw), status_id: tw.id_str} end)
+      |> Stream.map(fn(tw) -> %{member: member_from_tweet(tw), links: sift_out_url(tw), status_id: tw.id_str} end)
       |> Stream.filter(fn(m) -> has_urls(m) end)
+      # |> Stream.map(fn(ds) -> Repo.save_to_db(ds) end)
       |> Stream.map(fn(ds) -> IO.inspect(ds) end)
 
     Enum.to_list(stream)
