@@ -1,4 +1,6 @@
 defmodule Nuzzelish.Twitter do
+  alias Nuzzelish.{Link, Member}
+
   @account System.get_env("TW_ACCOUNT", "chrisbodhi")
   @list System.get_env("TW_LIST", "post-normal")
 
@@ -47,6 +49,10 @@ defmodule Nuzzelish.Twitter do
 
   defp remove_empty(maps) do
     Enum.filter(maps, fn(m) -> !Enum.empty?(m.urls) end)
+  end
+
+  def member_from_tweet(tw) do
+    %Member{avatar_url: tw.user.profile_image_url_https, screen_name: tw.user.screen_name, tw_user_id: tw.user.id_str}
   end
 
   def has_urls(mapped) do
