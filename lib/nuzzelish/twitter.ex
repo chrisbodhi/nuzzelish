@@ -49,10 +49,14 @@ defmodule Nuzzelish.Twitter do
     Enum.filter(maps, fn(m) -> !Enum.empty?(m.urls) end)
   end
 
+  def has_urls(mapped) do
+    length(mapped.urls) > 0
+  end
+
   def stream_from_list(ids_to_follow) do
     stream = ExTwitter.stream_filter([follow: ids_to_follow], :infinity)
-      |> Stream.map(fn(tw) -> %{name: tw.user.screen_name, urls: extract_urls(tw.entities)} end)
-      |> Stream.filter(fn(m) -> length(m.urls) > 0 end)
+      |> Stream.map(fn(tw) -> %{name: tw.user.screen_name, urls: sift_out_url(tw)} end)
+      |> Stream.filter(fn(m) -> has_urls(m) end)
       |> Stream.map(fn(ds) -> IO.inspect(ds) end)
 
     Enum.to_list(stream)
