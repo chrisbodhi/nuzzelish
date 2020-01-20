@@ -8,7 +8,6 @@ defmodule Nuzzelish.Link do
     field :site_name, :string
     field :title, :string
     field :url, :string
-    field :tw_status_id, :string
     many_to_many :members, Nuzzelish.Member, join_through: "links_members"
 
     timestamps()
