@@ -17,6 +17,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## Developing
+
+- Get the Postgres database going: `$ mix ecto.create && mix ecto.migrate`
+- Connect to the dev Postgres instance with `\connect nuzzelish_dev` after
+  running `$ psql -U postgres`
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
