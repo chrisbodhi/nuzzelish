@@ -17,4 +17,15 @@ defmodule Nuzzelish.Repo do
     # Sort links by descending number of members who shared
     latest |> Enum.sort_by(fn(l) -> length(l.members) end, &>=/2)
   end
+
+  def save_to_db(ds) do
+    %{member: member, links: links} = ds
+    # todo: what does insert do for existing record?
+    member = Nuzzelish.Repo.insert!(member)
+    # todo: map over links array, do for each
+    links = Nuzzelish.Repo.preload(links, [:members])
+    link_changeset = Ecto.Changeset.change(links)
+    l_m_changeset = link_changeset |> Ecto.Changeset.put_assoc(:members, [member])
+    Nuzzelish.Repo.update!(l_m_changeset)
+  end
 end
