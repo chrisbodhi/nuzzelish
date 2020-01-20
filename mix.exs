@@ -45,7 +45,8 @@ defmodule Nuzzelish.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:oauther, "~> 1.1"},
       {:extwitter, "~> 0.10"},
-      {:httpoison, "~> 1.6"}
+      {:httpoison, "~> 1.6"},
+      {:floki, "~> 0.24.0"}
     ]
   end
 
