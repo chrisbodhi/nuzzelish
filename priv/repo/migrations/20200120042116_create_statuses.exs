@@ -3,7 +3,7 @@ defmodule Nuzzelish.Repo.Migrations.CreateStatuses do
 
   def change do
     create table(:statuses) do
-      add :tw_status_id, :string
+      add :tw_status_id, :text
 
       timestamps()
     end
