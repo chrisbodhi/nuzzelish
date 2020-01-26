@@ -10,7 +10,7 @@ defmodule Nuzzelish.Unfurl do
     end
     img = case Floki.find(doc, "meta[property=\"og:image\"]") do
       [{_, img, _}] -> img
-      _ -> ""
+      _ -> "https://http.cat/404"
     end
     site_name = case Floki.find(doc, "meta[property=\"og:site_name\"]") do
       [{_, site_name, _}] -> site_name

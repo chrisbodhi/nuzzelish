@@ -1,16 +1,26 @@
-<section class="row">
-  <%= for ds <- @urls do %>
-      <section class="row">
-      <article class="column">
-        <h2><a href=<%= ds.url %>><%= ds.title %></a></h2>
-        <h4><%= ds.site_name %></h4>
-        <p><%= ds.description %></p>
-        <img src=<%= ds.image %> alt=<%= ds.title %> />
-        <hr />
-        Shared by: <%= ds.members |> Enum.map(fn(m) ->
-          link("#{m.screen_name} ", to: "https://twitter.com/#{m.screen_name}")
-        end) %>
-</article>
-</section>
-  <% end %>
-</section>
+<%= for ds <- @urls do %>
+  <section class="row">
+    <article class="column">
+      <div class="card">
+        <div class="card-header">
+          <h2><a href="<%= ds.url %>"><%= ds.title %></a></h2>
+          <h4><%= ds.site_name %></h4>
+        </div>
+        <div class="card-main">
+          <div class="row">
+            <p class="main-description column column-80"><%= ds.description %></p>
+            <div class="main-image column column-20">
+              <img src="<%= ds.image %>" alt="<%= ds.title %>" />
+            </div>
+          </div>
+        </div>
+        <div class="card-footer column">
+          <span>Shared by: <%= ds.members |> Enum.map(fn(m) ->
+            link(img_tag(m.avatar_url, alt: m.screen_name), to: "https://twitter.com/#{m.screen_name}")
+            end) %>
+          </span>
+        </div>
+      </div>
+    </article>
+  </section>
+<% end %>

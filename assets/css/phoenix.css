@@ -120,6 +120,69 @@ header nav a {
   display: block;
 }
 
+/* Card */
+
+.card {
+  width: 94%;
+  border: 1px solid #ef9a9a;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.card-header {
+  color: #d32f2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 88px;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #ef9a9a;
+  background-color: #ffebee;
+}
+
+.card-header h2 {
+  margin-bottom: unset;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.card-header h4 {
+  margin-bottom: unset;
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  margin: 15px;
+}
+
+.main-image {
+  width: 30px;
+}
+
+.main-image img {
+  max-width: 75%;
+}
+
+.main-description {
+  color: midnightblue;
+}
+
+.card-footer {
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Card, end */
+
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
   header section {
     flex-direction: row;
