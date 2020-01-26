@@ -25,6 +25,23 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - Connect to the dev Postgres instance with `\connect nuzzelish_dev` after
   running `$ psql -U postgres`
 
+## Deploying
+
+### Build Locally
+
+Just to confirm things look good
+
+- `$ mix phx.digest`
+- `$ export SECRET_KEY_BASE="$(mix phx.gen.secret)"`
+- `$ export DATABASE_URL="user:pass//postgres:@localhost:5432/nuzzelish_dev"`
+- `$ MIX_ENV=prod mix release`
+- `$ MIX_ENV=prod APP_NAME=nuzzelish PORT=4000 _build/prod/rel/nuzzelish/bin/nuzzelish start`
+- `$ curl localhost:4000`
+
+### Send to Gigalixir
+
+TBD
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
