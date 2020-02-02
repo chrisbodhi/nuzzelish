@@ -28,6 +28,19 @@ defmodule Nuzzelish.Repo do
     end
   end
 
+  def get_or_create_link(url) do
+    link_record = Nuzzelish.Repo.get_by(Link, url: url)
+
+    case link_record do
+      nil -> Unfurl.build(url) |> Nuzzelish.Repo.insert!
+      _ -> link_record
+    end
+  end
+
+  def save_status_id(status_id) do
+    %Status{tw_status_id: status_id} |> Nuzzelish.Repo.insert!
+  end
+
   def link_member_changeset(link, member_record) do
     link_changeset = Ecto.Changeset.change(link)
     link_changeset |> Ecto.Changeset.put_assoc(:members, [member_record])
@@ -39,11 +52,11 @@ defmodule Nuzzelish.Repo do
   end
 
   def save_to_db(ds) do
-    %{member: member, links: links, status_id: status_id} = ds
+    %{member: member, links: urls, status_id: status_id} = ds
     member_record = get_or_set_member(member)
-    for link <- links do
-      populated = Unfurl.build(link) |> Nuzzelish.Repo.insert!
-      status = %Status{tw_status_id: status_id} |> Nuzzelish.Repo.insert!
+    for url <- urls do
+      populated = get_or_create_link(url)
+      status = save_status_id(status_id)
       populated = Nuzzelish.Repo.preload(populated, [:members, :statuses])
       lm_changeset = link_member_changeset(populated, member_record)
       ls_changeset = link_status_changeset(populated, status)
