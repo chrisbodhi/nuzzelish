@@ -31,6 +31,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 Just to confirm things look good
 
+- `$ cd assets && npm install && npm run deploy && cd ..`
 - `$ mix phx.digest`
 - `$ export SECRET_KEY_BASE="$(mix phx.gen.secret)"`
 - `$ export DATABASE_URL="user:pass//postgres:@localhost:5432/nuzzelish_dev"`
@@ -40,7 +41,7 @@ Just to confirm things look good
 
 ### Send to Gigalixir
 
-TBD
+Make changes, merge to `master`, `git push gigalixir master`.
 
 ## Learn more
 
