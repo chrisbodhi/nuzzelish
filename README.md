@@ -41,7 +41,9 @@ Just to confirm things look good
 
 ### Send to Gigalixir
 
-Make changes, merge to `master`, `git push gigalixir master`.
+- Set environment variables after first deploy: `gigalixir config:set
+  SOME_VAR=hola OTHER_VAR=mundo`
+- Make changes, merge to `master`, `git push gigalixir master`.
 
 ## Learn more
 
