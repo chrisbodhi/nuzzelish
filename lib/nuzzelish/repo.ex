@@ -55,6 +55,7 @@ defmodule Nuzzelish.Repo do
     %{member: member, links: urls, status_id: status_id} = ds
     member_record = get_or_set_member(member)
     for url <- urls do
+      IO.puts("url is ${url}")
       populated = get_or_create_link(url)
       status = save_status_id(status_id)
       populated = Nuzzelish.Repo.preload(populated, [:members, :statuses])

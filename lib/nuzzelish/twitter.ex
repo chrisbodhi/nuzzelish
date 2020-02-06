@@ -61,6 +61,7 @@ defmodule Nuzzelish.Twitter do
 
   def stream_from_list(ids_to_follow) do
     stream = ExTwitter.stream_filter([follow: ids_to_follow], :infinity)
+      |> Stream.filter(fn(tw) -> ids_to_follow =~ tw.user.id_str end)
       |> Stream.map(fn(tw) -> %{member: member_from_tweet(tw), links: sift_out_url(tw), status_id: tw.id_str} end)
       |> Stream.filter(fn(m) -> has_urls(m) end)
       |> Stream.map(fn(ds) -> Repo.save_to_db(ds) end)
