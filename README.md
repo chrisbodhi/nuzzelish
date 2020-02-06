@@ -17,6 +17,15 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+To run the stream collector, from `iex`, run
+
+``` sh
+iex(1)> alias Nuzzelish.Twitter
+Nuzzelish.Twitter
+iex(2)> Twitter.stream_from_list(Twitter.list_member_ids)
+
+```
+
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
 ## Developing
